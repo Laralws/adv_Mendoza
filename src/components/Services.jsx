@@ -23,7 +23,7 @@ const Services = () => {
 
   const atuacoes = [
     { title: "Home Care e Internação", description: "Garantia de estrutura hospitalar domiciliar e suporte de enfermagem para pacientes que necessitam de cuidados contínuos.", imgSrc: "/6.png" },
-    { title: "Tratamentos e Medicamentos", description: "Ações para fornecimento de medicação de alto custo e terapias específicas negadas pelo plano de saúde ou SUS.", imgSrc: "/1.png" },
+    { title: "Tratamentos e Medicamentos", description: "Ações para fornecimento de medicação de alto custo e terapias específicas negadas pelo plano de saúde ou SUS.", imgSrc: "/7.png" },
     { title: "Isenção de Imposto de Renda", description: "Direito garantido por lei para aposentados e pensionistas portadores de doenças graves, mesmo sem sintomas atuais.", imgSrc: "/3.png" },
     { title: "Direitos dos Autistas", description: "Atuação especializada para garantir terapias multidisciplinares (ABA, fonoaudiologia, etc.) e inclusão escolar.", imgSrc: "/5.png" },
     { title: "Cirurgias e Exames", description: "Medidas judiciais urgentes para autorização de cirúrgias e exames diagnósticos complexos.", imgSrc: "/4.png" },

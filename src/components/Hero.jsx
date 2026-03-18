@@ -44,9 +44,9 @@ const Hero = () => {
         }
       `}</style>
 
-      {/* Camada 0: Imagem de fundo ajustada */}
-      {/* bg-[22%_center] empurra a imagem para a esquerda no mobile, focando nas pessoas */}
-      <div className="absolute inset-0 bg-[url('/hero.png')] bg-cover bg-[22%_center] md:bg-right-top z-0"></div>
+      {/* Camada 0: Imagem de fundo ajustada para o extremo direito */}
+      {/* bg-[10%_center] empurra agressivamente a imagem para a esquerda no mobile */}
+      <div className="absolute inset-0 bg-[url('/hero.png')] bg-cover bg-[10%_center] md:bg-right-top z-0"></div>
       
       {/* Camada 1: PONTINHOS FLUTUANTES */}
       <div className="absolute inset-0 z-10 pointer-events-none">
