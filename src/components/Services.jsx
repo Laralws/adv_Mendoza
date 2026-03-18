@@ -26,7 +26,7 @@ const Services = () => {
     { title: "Tratamentos e Medicamentos", description: "Ações para fornecimento de medicação de alto custo e terapias específicas negadas pelo plano de saúde ou SUS.", imgSrc: "/7.png" },
     { title: "Isenção de Imposto de Renda", description: "Direito garantido por lei para aposentados e pensionistas portadores de doenças graves, mesmo sem sintomas atuais.", imgSrc: "/3.png" },
     { title: "Direitos dos Autistas", description: "Atuação especializada para garantir terapias multidisciplinares (ABA, fonoaudiologia, etc.) e inclusão escolar.", imgSrc: "/5.png" },
-    { title: "Cirurgias e Exames", description: "Medidas judiciais urgentes para autorização de cirúrgias e exames diagnósticos complexos.", imgSrc: "/4.png" },
+    { title: "Cirurgias e Exames", description: "Medidas judiciais urgentes para autorização de cirurgias e exames diagnósticos complexos.", imgSrc: "/4.png" },
     { title: "Reajustes Abusivos", description: "Combate a aumentos desproporcionais em mensalidades de planos de saúde por mudança de faixa etária ou sinistralidade.", imgSrc: "/2.png" }
   ];
 
@@ -74,9 +74,9 @@ const Services = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-white/[0.15] via-transparent to-transparent pointer-events-none"></div>
               <div className="absolute inset-0 rounded-[2rem] md:rounded-[2.5rem] shadow-[inset_0_1px_2px_rgba(255,255,255,0.4)] pointer-events-none"></div>
 
-              {/* ÍCONES REAJUSTADOS */}
-              {/* Mobile: w-20 (80px) | Desktop: w-28 (112px) */}
-              <div className="absolute -top-2 -right-2 md:top-4 md:right-4 opacity-90 transition-transform duration-700 group-hover:scale-110 z-30">
+              {/* ÍCONES REAJUSTADOS PARA NÃO COLAR NA EXTREMIDADE NO MOBILE */}
+              {/* No mobile: top-4 right-4 (mais para dentro) | No desktop: md:top-6 md:right-6 */}
+              <div className="absolute top-4 right-4 md:top-6 md:right-6 opacity-90 transition-transform duration-700 group-hover:scale-110 z-30">
                 <img 
                   src={item.imgSrc} 
                   alt={item.title} 
@@ -84,8 +84,8 @@ const Services = () => {
                 />
               </div>
 
-              {/* Espaçador equilibrado: h-12 no mobile, h-20 no desktop */}
-              <div className="h-12 md:h-20 w-full mb-2"></div>
+              {/* Espaçador equilibrado para acomodar a imagem sem cobrir o texto */}
+              <div className="h-16 md:h-24 w-full mb-2"></div>
               
               <h4 className="text-[20px] md:text-[22px] font-bold text-white mb-4 md:mb-5 tracking-tight pr-12 leading-[1.2] relative z-20">
                 {item.title}
