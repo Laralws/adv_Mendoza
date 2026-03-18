@@ -44,9 +44,9 @@ const Hero = () => {
         }
       `}</style>
 
-      {/* Camada 0: Imagem de fundo */}
-      {/* Ajustado bg-[98%_center] no mobile para puxar a imagem bem para a esquerda */}
-      <div className="absolute inset-0 bg-[url('/hero.png')] bg-cover bg-[98%_center] md:bg-right-top z-0"></div>
+      {/* Camada 0: Imagem de fundo ajustada */}
+      {/* bg-[15%_center] puxa a imagem para a direita no mobile, focando no conteúdo da esquerda/centro */}
+      <div className="absolute inset-0 bg-[url('/hero.png')] bg-cover bg-[15%_center] md:bg-right-top z-0"></div>
       
       {/* Camada 1: PONTINHOS FLUTUANTES */}
       <div className="absolute inset-0 z-10 pointer-events-none">
@@ -61,14 +61,14 @@ const Hero = () => {
         </div>
       </div>
       
-      {/* Overlay mobile levemente mais escuro para facilitar a leitura no novo posicionamento */}
-      <div className="absolute inset-0 bg-black/60 md:bg-transparent z-10"></div>
+      {/* Overlay mobile equilibrado */}
+      <div className="absolute inset-0 bg-black/50 md:bg-transparent z-10"></div>
 
       {/* Camada 2: Conteúdo */}
       <div className="max-w-7xl mx-auto px-6 py-12 relative z-20 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         
-        {/* BLOCO DE TEXTO: mt-56 no mobile para descer bem o conteúdo */}
-        <div className="flex flex-col items-center text-center lg:items-start lg:text-left gap-6 mt-56 md:mt-48">
+        {/* BLOCO DE TEXTO: mt-64 para garantir que o conteúdo fique na parte inferior no mobile */}
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-left gap-6 mt-64 md:mt-48">
           
           <h1 className="text-4xl md:text-5xl lg:text-5xl font-serif text-white leading-[1.1] tracking-tight drop-shadow-2xl">
             Transformando Vidas<br />
