@@ -44,8 +44,12 @@ const Hero = () => {
         }
       `}</style>
 
-      {/* Camada 0: Imagem de fundo com ajuste fino de 45% */}
-      <div className="absolute inset-0 bg-[url('/hero.png')] bg-cover bg-[45%_center] md:bg-right-top z-0"></div>
+      {/* Camada 0: Imagens de fundo responsivas */}
+      {/* MOBILE: Usa hero_mb.png centralizado e com padding-bottom para respiro */}
+      <div className="absolute inset-0 block md:hidden bg-[url('/hero_mb.png')] bg-cover bg-center bg-no-repeat z-0 pb-20"></div>
+      
+      {/* DESKTOP: Mantém a hero.png original à direita */}
+      <div className="absolute inset-0 hidden md:block bg-[url('/hero.png')] bg-cover md:bg-right-top z-0"></div>
       
       {/* Camada 1: PONTINHOS FLUTUANTES */}
       <div className="absolute inset-0 z-10 pointer-events-none">
@@ -60,12 +64,13 @@ const Hero = () => {
         </div>
       </div>
       
+      {/* Overlay equilibrado */}
       <div className="absolute inset-0 bg-black/50 md:bg-transparent z-10"></div>
 
       {/* Camada 2: Conteúdo */}
       <div className="max-w-7xl mx-auto px-6 py-12 relative z-20 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         
-        {/* BLOCO DE TEXTO: mt-64 para descer o conteúdo no mobile */}
+        {/* BLOCO DE TEXTO: mt-64 para descer o conteúdo no mobile e não cobrir os rostos na hero_mb.png */}
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left gap-6 mt-64 md:mt-48">
           
           <h1 className="text-4xl md:text-5xl lg:text-5xl font-serif text-white leading-[1.1] tracking-tight drop-shadow-2xl">
