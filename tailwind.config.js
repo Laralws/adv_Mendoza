@@ -6,14 +6,15 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        'mendoza-dark': '#2C3F4C',  // O tom mais escuro da logo
-        'mendoza-blue': '#54768D',  // O tom mais claro da logo
-        'mendoza-light': '#EEF1F3', // O cinza bem claro do fundo do papel timbrado
-      },
+      // Aqui você define as novas fontes elegantes
       fontFamily: {
-        // Substitua no seu index.css a importação do Google Fonts para Montserrat
-        sans: ['"Montserrat"', 'sans-serif'],
+        sans: ['"Montserrat"', 'sans-serif'],     // Para textos, botões e menus
+        serif: ['"Playfair Display"', 'serif'],   // Para títulos imponentes
+      },
+      colors: {
+        'mendoza-dark': '#2C3F4C',
+        'mendoza-blue': '#54768D',
+        'mendoza-light': '#EEF1F3',
       }
     },
   },

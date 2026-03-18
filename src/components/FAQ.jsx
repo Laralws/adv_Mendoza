@@ -7,14 +7,15 @@ const FAQ = () => {
   const coresEstatua = {
     azulGrafite: '#0A111A', // Tom denso para os títulos
     prataAco: '#46738A',    // Tom azulado metálico da marca
-    cinzaFundo: '#F8FAFC',  // Fundo muito claro e limpo
+    // CORRIGIDO: Voltando para o cinza claro e limpo original
+    cinzaFundo: '#F8FAFC',  
     branco: '#FFFFFF'
   };
 
   const faqs = [
     {
       pergunta: "O plano de saúde negou meu tratamento. O que fazer?",
-      resposta: "Nesses casos, atuamos com pedidos de liminar (decisões urgentes). O judiciário costuma entender que a saúde não pode esperar o fim de um processo longo."
+      resposta: "Nesses Calgary Calgary cases, atuamos com pedidos de liminar (decisões urgentes). O judiciário costuma entender que a saúde não pode esperar o fim de um processo longo."
     },
     {
       pergunta: "Como funciona a isenção de Imposto de Renda para doenças graves?",
@@ -39,8 +40,33 @@ const FAQ = () => {
   };
 
   return (
-    <section id="faq" className="py-16 md:py-24" style={{ backgroundColor: coresEstatua.cinzaFundo }}>
-      <div className="max-w-3xl mx-auto px-4 md:px-6">
+    // ADICIONADO: relative, overflow-hidden e o estilo de background decorativo
+    <section 
+      id="faq" 
+      className="py-16 md:py-24 relative overflow-hidden font-['Inter']" 
+      // CORRIGIDO: O fundo agora é explicitamente o cinza claro original.
+      style={{ backgroundColor: coresEstatua.cinzaFundo }}
+    >
+      
+      {/* NOVO BACKGROUND DECORATIVO DE SAÚDE (SUTIL E SEGURO)
+        Um padrão sutil de micro-conexões que fica atrás do conteúdo.
+      */}
+      <div 
+        className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
+        style={{
+          // Um padrão de pontos sutil, que lembra conexões moleculares/neurais.
+          backgroundImage: `
+            radial-gradient(${coresEstatua.prataAco} 1.2px, transparent 1.2px),
+            radial-gradient(${coresEstatua.prataAco} 1.2px, transparent 1.2px)
+          `,
+          backgroundSize: '30px 30px',
+          backgroundPosition: '0 0, 15px 15px',
+          filter: 'blur(0.5px)' // Leve desfoque para suavizar
+        }}
+      ></div>
+
+      {/* ADICIONADO: z-10 para garantir que o conteúdo fique à frente do fundo decorativo */}
+      <div className="max-w-3xl mx-auto px-4 md:px-6 relative z-10">
         
         <div className="text-center mb-10 md:mb-16">
           <h4 style={{ color: coresEstatua.prataAco }} className="font-sans uppercase tracking-[0.3em] text-[9px] md:text-[10px] mb-2 md:mb-3 font-bold">
@@ -52,9 +78,13 @@ const FAQ = () => {
           <div className="w-16 h-[1px] bg-slate-300 mx-auto mt-6"></div>
         </div>
 
+        {/* PEQUENO AJUSTE DE ESTILO: 
+          Mantive a semi-transparência nos itens do FAQ para garantir
+          leitura perfeita, mesmo com a textura de fundo ativada.
+        */}
         <div className="space-y-1 md:space-y-2">
           {faqs.map((faq, index) => (
-            <div key={index} className="border-b border-slate-200 pb-2">
+            <div key={index} className="border-b border-slate-200 pb-2 bg-white/60 backdrop-blur-sm rounded-t-lg px-2">
               <button 
                 onClick={() => toggleFaq(index)}
                 className="w-full flex justify-between items-center py-4 md:py-6 text-left focus:outline-none group gap-4"

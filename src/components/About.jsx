@@ -1,84 +1,139 @@
-import React from 'react';
+import React, { useState } from 'react'; 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Autoplay } from 'swiper/modules';
+import { useInView } from 'react-intersection-observer';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 const About = () => {
+  const [swiperInstance, setSwiperInstance] = useState(null);
+
+  const { ref, inView: sobreVisivel } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const mensagemWpp = encodeURIComponent("Olá! Gostaria de agendar uma consulta com um especialista em Direito à Saúde.");
+
   return (
-    <section id="sobre" className="relative py-24 bg-white overflow-hidden font-['Inter']">
-      
-      {/* Marca d'água sutil */}
-      <div className="absolute top-0 right-0 opacity-10 pointer-events-none w-64 md:w-96 text-mendoza-dark select-none transform -translate-y-1/4 translate-x-1/4">
-        <svg viewBox="0 0 100 100" className="w-full h-full fill-current">
-          <path d="M10,100 L40,40 L70,100 Z" />
-          <path d="M70,100 L100,40 L130,100 Z" />
+    <section
+      id="sobre"
+      ref={ref}
+      className="relative py-16 md:py-24 overflow-hidden bg-white"
+    >
+      {/* ONDA DE TOPO - Usando o azul da Mendoza */}
+      <div className="absolute top-0 left-0 w-full overflow-hidden z-20">
+        <svg className="relative block w-full h-[30px] md:h-[60px]" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M600,120C300,120,0,0,0,0H1200S900,120,600,120Z" fill="#46738A"></path>
         </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="flex flex-col lg:flex-row gap-16 items-center">
+      <div className="w-full max-w-6xl mx-auto px-4 md:px-6 relative z-10 pt-12 md:pt-16">
+        <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-center">
           
-          {/* LADO ESQUERDO: Espaço para Carrossel de Fotos */}
-          <div className="w-full lg:w-1/2">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-gray-50 aspect-[4/3] flex items-center justify-center border-8 border-white">
-              <div className="text-gray-400 font-medium italic text-center px-6">
-                Espaço reservado para o Carrossel de Fotos
-              </div>
-              
-              <div className="absolute top-4 left-4 py-1 px-3 bg-[#46738A] text-white text-xs font-bold rounded-full z-20 shadow-lg">
-                Mendoza Advogados
-              </div>
+          {/* BLOCO DE TEXTO */}
+          <div className={`w-full md:w-1/2 order-1 transition-all duration-1000 ${sobreVisivel ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"} text-center md:text-left`}>
+            <h4 className="font-sans text-mendoza-blue uppercase tracking-widest text-xs md:text-sm mb-3 font-bold">
+              Compromisso com o Paciente
+            </h4>
+            <h2 className="font-serif text-mendoza-dark text-3xl md:text-5xl mb-6 leading-tight">
+              Mendoza Advogados
+            </h2>
+            <div className="space-y-6 text-gray-700 font-sans leading-relaxed text-sm md:text-lg text-justify px-2 md:px-0">
+              <p>
+                Com mais de uma década de experiência, a Mendoza Advogados consolidou-se como referência na defesa intransigente do Direito à Saúde. Nossa missão é transformar vidas através de uma atuação técnica e estratégica.
+              </p>
+              <p>
+                Especializados em demandas complexas contra planos de saúde e órgãos públicos, atuamos com agilidade na obtenção de liminares para home care, cirurgias e medicamentos de alto custo, garantindo que a dignidade humana esteja sempre acima da burocracia.
+              </p>
+            </div>
+
+            {/* BOTÃO DESKTOP: Prata Reluzente conforme conversamos */}
+            <div className="hidden md:block mt-10">
+              <a 
+                href={`https://wa.me/5583993754000?text=${mensagemWpp}`}
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="relative px-10 py-4 overflow-hidden transition-all duration-300 rounded-full shadow-xl inline-flex items-center justify-center border border-white/30 bg-gradient-to-b from-[#f8fafc] via-[#cbd5e1] to-[#94a3b8] group"
+              >
+                {/* Efeito de brilho sweep animado (Shimmer) */}
+                <div className="shimmer-layer">
+                  <div className="shimmer-line"></div>
+                </div>
+                
+                <span className="relative z-10 font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-[#050C16]">Falar com Especialista</span>
+              </a>
             </div>
           </div>
 
-          {/* LADO DIREITO: Títulos e Cards Transparentes */}
-          <div className="w-full lg:w-1/2">
-            <div className="mb-8 text-center lg:text-left">
-              <h2 className="text-[10px] md:text-xs font-bold text-[#D4AF37] uppercase tracking-[0.2em] mb-4">
-                Quem Somos
-              </h2>
-              <h3 className="text-3xl md:text-4xl font-serif text-[#0A111A] leading-tight">
-                Conheça o propósito da <br className="hidden md:block" />
-                Mendoza Advogados.
-              </h3>
-            </div>
+          {/* CARROSSEL DE FOTOS */}
+          <div className={`w-full md:w-1/2 order-2 relative transition-all duration-1000 delay-300 ${sobreVisivel ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+            <div className="absolute -inset-3 md:-inset-4 border border-mendoza-blue/30 translate-x-3 translate-y-3 md:translate-x-4 md:translate-y-4 rounded-2xl md:rounded-3xl pointer-events-none"></div>
             
-            {/* GRID DE CARDS TRANSPARENTES (Mantendo o estilo que você gostou) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              
-              {/* Card 1 */}
-              <div className="p-6 bg-white/40 backdrop-blur-sm border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
-                <div className="w-10 h-10 mb-4 rounded-lg bg-[#46738A]/10 flex items-center justify-center text-[#46738A] group-hover:bg-[#46738A] group-hover:text-white transition-colors">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                </div>
-                <h4 className="font-bold text-[#0A111A] text-sm leading-snug">Sócios Mestres e Especialistas experientes</h4>
-              </div>
+            <div className="relative z-10 shadow-2xl overflow-hidden rounded-2xl md:rounded-3xl" style={{ borderRadius: "18px 18px 18px 0px" }}>
+              <Swiper
+                modules={[Pagination, Autoplay]}
+                onSwiper={(swiper) => setSwiperInstance(swiper)}
+                slidesPerView={1}
+                loop={true}
+                pagination={{ clickable: true }}
+                autoplay={{ delay: 6000, disableOnInteraction: false }}
+                className="w-full h-[350px] md:h-[500px] relative"
+              >
+                {/* Aqui você usará as fotos da Mendoza Advogados */}
+                <SwiperSlide><img src="/sobre01.png" className="w-full h-full object-cover" alt="Mendoza Advogados Escritório" /></SwiperSlide>
+                <SwiperSlide><img src="/sobre02.png" className="w-full h-full object-cover" alt="Atendimento Especializado" /></SwiperSlide>
 
-              {/* Card 2 */}
-              <div className="p-6 bg-white/40 backdrop-blur-sm border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
-                <div className="w-10 h-10 mb-4 rounded-lg bg-[#46738A]/10 flex items-center justify-center text-[#46738A] group-hover:bg-[#46738A] group-hover:text-white transition-colors">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                </div>
-                <h4 className="font-bold text-[#0A111A] text-sm leading-snug">Defesa Especializada na Causa do Autismo</h4>
-              </div>
-
-              {/* Card 3 */}
-              <div className="p-6 bg-white/40 backdrop-blur-sm border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
-                <div className="w-10 h-10 mb-4 rounded-lg bg-[#46738A]/10 flex items-center justify-center text-[#46738A] group-hover:bg-[#46738A] group-hover:text-white transition-colors">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                </div>
-                <h4 className="font-bold text-[#0A111A] text-sm leading-snug">Especialistas em Direito à Saúde e Isenções</h4>
-              </div>
-
-              {/* Card 4 */}
-              <div className="p-6 bg-white/40 backdrop-blur-sm border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
-                <div className="w-10 h-10 mb-4 rounded-lg bg-[#46738A]/10 flex items-center justify-center text-[#46738A] group-hover:bg-[#46738A] group-hover:text-white transition-colors">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9h18"></path></svg>
-                </div>
-                <h4 className="font-bold text-[#0A111A] text-sm leading-snug">Atendimento Jurídico em todo o Brasil</h4>
-              </div>
-
+                {/* Navegação Customizada */}
+                <button 
+                  type="button" 
+                  onClick={(e) => { e.preventDefault(); if (swiperInstance) swiperInstance.slidePrev(); }} 
+                  className="absolute left-2 top-1/2 -translate-y-1/2 z-[100] w-10 h-10 flex items-center justify-center backdrop-blur-md rounded-full border border-white/20 bg-mendoza-dark/50 text-white"
+                >
+                  <i className="ri-arrow-left-s-line text-2xl"></i>
+                </button>
+                
+                <button 
+                  type="button" 
+                  onClick={(e) => { e.preventDefault(); if (swiperInstance) swiperInstance.slideNext(); }} 
+                  className="absolute right-2 top-1/2 -translate-y-1/2 z-[100] w-10 h-10 flex items-center justify-center backdrop-blur-md rounded-full border border-white/20 bg-mendoza-dark/50 text-white"
+                >
+                  <i className="ri-arrow-right-s-line text-2xl"></i>
+                </button>
+              </Swiper>
             </div>
           </div>
+
+          {/* BOTÃO MOBILE */}
+          <div className={`w-full md:hidden order-3 flex justify-center mt-8 transition-all duration-1000 ${sobreVisivel ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+            <a 
+              href={`https://wa.me/5583993754000?text=${mensagemWpp}`}
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="relative px-10 py-4 overflow-hidden rounded-full shadow-xl bg-gradient-to-b from-[#f8fafc] via-[#cbd5e1] to-[#94a3b8] text-[#050C16] text-center"
+            >
+              <span className="relative z-10 font-sans text-[11px] font-bold uppercase tracking-[0.2em]">Falar com Especialista</span>
+            </a>
+          </div>
+
         </div>
       </div>
+
+      <style jsx="true">{`
+        @keyframes sweepContinuous {
+          0% { transform: translateX(-150%) skewX(-30deg); }
+          40%, 100% { transform: translateX(150%) skewX(-30deg); }
+        }
+        .shimmer-layer {
+          position: absolute; inset: 0; overflow: hidden; border-radius: 9999px; z-index: 5;
+        }
+        .shimmer-line {
+          position: absolute; top: 0; height: 100%; width: 40%;
+          background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.8), transparent);
+          animation: sweepContinuous 3s infinite ease-in-out;
+        }
+      `}</style>
     </section>
   );
 };

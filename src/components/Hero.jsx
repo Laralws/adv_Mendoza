@@ -2,49 +2,99 @@ import React from 'react';
 
 const Hero = () => {
   return (
-    // Fundo escuro da Mendoza para as margens, mas a imagem cobrirá tudo.
-    <section className="relative w-full min-h-screen bg-mendoza-dark overflow-hidden flex items-center pt-24 md:pt-0">
+    <section className="relative w-full min-h-screen bg-[#050C16] overflow-hidden flex items-center pt-20 md:pt-0 font-sans">
       
-      {/* Imagem de fundo bruta, nítida e sem camadas (carregando /hero.png) */}
-      <div className="absolute inset-0 bg-[url('/hero.png')] bg-cover bg-center"></div>
+      <style jsx="true">{`
+        @keyframes pulse-prata-reluzente {
+          0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+          70% { transform: scale(1.02); box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
+          100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+        .bg-prata-brilhoso {
+          background: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 45%, #94a3b8 100%);
+          border: 1px solid #ffffff;
+        }
+        @keyframes sweepContinuous {
+          0% { transform: translateX(-150%) skewX(-30deg); }
+          40%, 100% { transform: translateX(150%) skewX(-30deg); }
+        }
+        .shimmer-layer {
+          position: absolute; inset: 0; overflow: hidden; border-radius: 9999px; z-index: 5;
+        }
+        .shimmer-line {
+          position: absolute; top: 0; height: 100%; width: 40%;
+          background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.8), transparent);
+          animation: sweepContinuous 3s infinite ease-in-out;
+        }
 
-      <div className="max-w-7xl mx-auto px-6 py-12 relative z-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        /* ANIMAÇÃO DOS PONTINHOS FLUTUANTES */
+        .dot-hero {
+            position: absolute;
+            background: #ffffff;
+            border-radius: 50%;
+            opacity: 0.15;
+            filter: blur(1px);
+            animation: floatHero 15s infinite ease-in-out;
+            pointer-events: none; /* Garante que não atrapalhe cliques */
+        }
+        @keyframes floatHero {
+            0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.1; }
+            50% { transform: translateY(-60px) translateX(30px) scale(1.2); opacity: 0.3; }
+            100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.1; }
+        }
+      `}</style>
+
+      {/* Camada 0: Imagem de fundo */}
+      <div className="absolute inset-0 bg-[url('/hero.png')] bg-cover bg-center md:bg-right-top z-0"></div>
+      
+      {/* Camada 1: PONTINHOS FLUTUANTES (Agora garantidamente EM CIMA do fundo) */}
+      <div className="absolute inset-0 z-10 pointer-events-none">
+        <div className="relative w-full h-full overflow-hidden">
+          {/* Gerando os pontos com posições e animações independentes */}
+          <span className="dot-hero w-1 h-1 top-[20%] left-[15%]" style={{ animationDelay: '0s' }}></span>
+          <span className="dot-hero w-2 h-2 top-[60%] left-[25%]" style={{ animationDelay: '2.5s' }}></span>
+          <span className="dot-hero w-1 h-1 top-[40%] left-[80%]" style={{ animationDelay: '4s' }}></span>
+          <span className="dot-hero w-1.5 h-1.5 top-[80%] left-[45%]" style={{ animationDelay: '1.2s' }}></span>
+          <span className="dot-hero w-1 h-1 top-[15%] left-[65%]" style={{ animationDelay: '3s' }}></span>
+          <span className="dot-hero w-2 h-2 top-[70%] left-[85%]" style={{ animationDelay: '5.5s' }}></span>
+          <span className="dot-hero w-1.5 h-1.5 top-[30%] left-[35%]" style={{ animationDelay: '0.8s' }}></span>
+        </div>
+      </div>
+      
+      {/* Overlay suave para mobile */}
+      <div className="absolute inset-0 bg-black/30 md:bg-transparent z-10"></div>
+
+      {/* Camada 2: Conteúdo (Texto e Botão) */}
+      <div className="max-w-7xl mx-auto px-6 py-12 relative z-20 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         
-        {/* COLUNA ESQUERDA: Textos e Botão */}
-        {/* Adicionado mt-24 md:mt-40 para empurrar o bloco de texto para baixo */}
-        <div className="flex flex-col items-start gap-6 mt-24 lg:mt-40">
+        {/* COLUNA ESQUERDA */}
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-left gap-6 mt-8 lg:mt-20">
           
-          {/* Título: Usando font-serif para dar aquele ar clássico da referência */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white leading-[1.1] tracking-tight">
-            Mendoza Advogados,<br />
-            Defesa Estratégica com<br />
-            Excelência e Discrição.
+          <h1 className="text-4xl md:text-5xl lg:text-5xl font-serif text-white leading-[1.1] tracking-tight drop-shadow-2xl">
+            Transformando Vidas<br />
+            e garantindo o<br />
+            direito à saúde
           </h1>
           
-          <p className="text-base md:text-lg text-gray-300 max-w-lg leading-relaxed font-light">
-            Há mais de 10 anos, a Mendoza Advogados atua na proteção intransigente dos direitos e garantias de seus clientes. Especialistas em casos complexos e sensíveis, oferecemos uma defesa técnica, combativa e personalizada do inquérito aos tribunais superiores.
+          <p className="text-sm md:text-lg text-gray-200 max-w-lg leading-relaxed font-light drop-shadow-lg">
+            Há mais de 10 anos, a Mendoza Advogados atua na proteção intransigente dos direitos e garantias de seus clientes. Atendimento técnico e personalizado em Campina Grande - PB.
           </p>
           
-          <div className="w-full flex flex-col items-start gap-4 mt-4">
-             {/* Botão Metálico Azulado com Texto Branco */}
+          <div className="w-full flex flex-col items-center lg:items-start gap-4 mt-4">
              <a 
                href="https://wa.me/5583993754000" 
                target="_blank"
                rel="noreferrer"
-               className="px-10 py-4 rounded-md font-bold transition-all duration-300 uppercase tracking-widest text-sm text-white drop-shadow-md bg-gradient-to-b from-[#5c8a9f] via-[#46738A] to-[#2a4857] border border-[#7ba2b5] shadow-[0_4px_15px_rgba(70,115,138,0.5)] hover:shadow-[0_6px_20px_rgba(70,115,138,0.7)] hover:brightness-110 w-full sm:w-auto text-center"
+               className="relative px-10 py-4 rounded-full font-normal uppercase tracking-widest text-[12px] text-[#050C16] bg-prata-brilhoso shadow-2xl flex items-center justify-center w-full sm:w-auto hover:brightness-105 transition-all duration-300 animate-[pulse-prata-reluzente_2s_infinite]"
              >
-               Agende Consulta Jurídica
+               <div className="shimmer-layer"><div className="shimmer-line"></div></div>
+               <span className="relative z-10">Falar com Advogado</span>
              </a>
-             
           </div>
         </div>
 
-        {/* COLUNA DIREITA: Composição de Imagens */}
-        <div className="relative w-full h-[450px] lg:h-[650px] flex items-end justify-center mt-10 lg:mt-0">
-           
-           {/* Todos os elementos quebrados (Símbolo e Selo) foram completamente removidos daqui. */}
-           {/* Agora esta coluna está vazia, servindo apenas para manter o layout do Grid e não deixar o texto invadir o rosto dos advogados. */}
-
+        {/* COLUNA DIREITA (Espaçador) */}
+        <div className="hidden lg:flex relative w-full h-[650px] items-end justify-center">
         </div>
       </div>
     </section>

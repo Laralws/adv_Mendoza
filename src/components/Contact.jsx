@@ -1,146 +1,108 @@
 import React from 'react';
 
 const Contact = () => {
-  const coresEstatua = {
-    azulGrafite: '#1A242F',
-    brilhoMaximo: '#FFFFFF', 
-    azulFundo: '#050C16'
-  };
-
-  // ESTILO DE AÇO ESCOVADO PARA O TEXTO "IMPLACÁVEL"
-  const estiloAcoSolida = {
-    backgroundImage: `linear-gradient(135deg, #7a8c9f 0%, #ffffff 50%, #7a8c9f 100%)`,
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    filter: 'contrast(1.6) brightness(1.2) drop-shadow(0 2px 10px rgba(255,255,255,0.2))'
-  };
-
-  // =======================================================
-  // NOVO ESTILO: AZUL SAFIRA ESCURO (DEEP SAPPHIRE) METÁLICO
-  // =======================================================
-  const estiloBotaoMendozaDark = {
-    // Base escura e sóbria de Azul Safira Profundo
-    backgroundColor: '#0A1A2F', 
-    // Brilho interno sutil que simula o metal polido nas bordas
-    boxShadow: `
-      0 4px 15px rgba(0,0,0,0.5), 
-      inset 0 1px 1px rgba(255,255,255,0.1), /* Brilho de quina superior */
-      inset 0 0 10px rgba(70,115,138,0.2)   /* Reflexo azul sutil interno */
-    `,
-    // Contraste sutil no hover
-    transition: 'all 0.4s ease-in-out',
-    border: '1px solid rgba(70,115,138,0.3)' // Borda fina de aço azul
-  };
-
   return (
     <section 
       id="contato" 
-      className="relative w-full py-20 md:py-32 bg-cover bg-center flex items-center overflow-hidden" 
-      style={{ backgroundImage: "url('/back-04.png')", backgroundColor: coresEstatua.azulFundo }}
+      className="relative w-full py-20 md:py-32 bg-cover bg-center flex items-center overflow-hidden font-['Inter']" 
+      // Background puro com a imagem back-contact.png
+      style={{ backgroundImage: "url('/back-contact.png')" }}
     >
-      <div className="absolute inset-0 bg-black/75 z-0"></div>
+      {/* Estilos das Animações Prata Reluzente */}
+      <style jsx="true">{`
+        @keyframes pulse-prata-reluzente {
+          0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+          70% { transform: scale(1.02); box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
+          100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+        @keyframes sweepContinuous {
+          0% { transform: translateX(-150%) skewX(-30deg); }
+          40%, 100% { transform: translateX(150%) skewX(-30deg); }
+        }
+        .bg-prata-brilhoso {
+          background: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 45%, #94a3b8 100%);
+          border: 1px solid #ffffff;
+        }
+        .shimmer-layer-contact {
+          position: absolute; inset: 0; overflow: hidden; border-radius: 12px; z-index: 5;
+        }
+        .shimmer-line-contact {
+          position: absolute; top: 0; height: 100%; width: 40%;
+          background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.8), transparent);
+          animation: sweepContinuous 3s infinite ease-in-out;
+        }
+      `}</style>
+
+      {/* Camada de overlay removida para deixar a imagem de fundo brilhar sozinha */}
       
       <div className="max-w-6xl mx-auto w-full px-4 md:px-6 grid md:grid-cols-2 gap-10 md:gap-20 items-center relative z-10">
         
-        {/* LADO ESQUERDO: Foco em Saúde e Dignidade */}
+        {/* LADO ESQUERDO: Textos com drop-shadow para garantir leitura sobre a imagem */}
         <div className="max-w-xl text-center md:text-left mx-auto md:mx-0">
-          <div className="w-12 h-[2px] bg-white mb-6 mx-auto md:mx-0 opacity-100"></div>
+          <div className="w-12 h-[2px] bg-[#cbd5e1] mb-6 mx-auto md:mx-0 shadow-sm"></div>
           
-          <h5 className="font-serif text-white leading-tight mb-8">
-            <span className="text-xl md:text-3xl block mb-2 uppercase tracking-wide opacity-100">
-              Sua saúde e sua dignidade exigem
-            </span>
-            <span className="text-2xl md:text-[38px] block font-semibold uppercase tracking-tight opacity-100">
-              Defesa jurídica <span style={estiloAcoSolida} className="inline-block font-bold">implacável</span>
+          <h5 className="font-serif text-white leading-tight mb-8 drop-shadow-lg">
+            <span className="text-xl md:text-4xl block mb-2 uppercase tracking-tight">
+              Sua saúde e sua dignidade<br /> exigem 
+              <span className="block mt-2 font-bold text-[#cbd5e1]">Defesa jurídica implacável</span>
             </span>
           </h5>
           
-          <p className="text-white font-light text-[14px] md:text-base leading-relaxed mb-10 opacity-90">
+          <p className="text-white font-light text-[14px] md:text-lg leading-relaxed mb-10 drop-shadow-md">
             Não enfrente negações de saúde ou injustiças sozinho. Nossa equipe está pronta para agir com urgência e rigor técnico para garantir seus direitos fundamentais.
           </p>
 
           <div className="flex items-center justify-center md:justify-start gap-4 text-white">
-            <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full border border-white bg-white/10">
-              <i className="ri-heart-pulse-line text-xl md:text-2xl text-white"></i>
+            <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full border border-white/40 bg-black/20 backdrop-blur-sm">
+              <i className="ri-heart-pulse-line text-xl md:text-2xl text-[#cbd5e1]"></i>
             </div>
-            <span className="font-serif text-[9px] md:text-[11px] uppercase tracking-widest text-left leading-tight opacity-100">
+            <span className="text-[#cbd5e1] font-sans text-[9px] md:text-[11px] uppercase tracking-[0.2em] font-bold drop-shadow-md">
               Humanidade, Urgência<br className="md:hidden"/> e Especialização.
             </span>
           </div>
         </div>
 
-        {/* LADO DIREITO: Card de Vidro com links Mendoza */}
-        <div className="md:justify-self-end w-full max-w-md bg-white/[0.05] backdrop-blur-xl border border-white/20 p-6 md:p-8 rounded-2xl shadow-2xl mx-auto md:mx-0">
-          <div className="text-center mb-6 md:mb-8">
-            <h4 className="text-white uppercase tracking-[0.3em] text-[10px] font-bold mb-2 opacity-100">
+        {/* LADO DIREITO: Card de Vidro Espelhado */}
+        <div className="md:justify-self-end w-full max-w-md bg-white/[0.05] backdrop-blur-xl border border-white/20 p-6 md:p-10 rounded-3xl shadow-2xl mx-auto md:mx-0">
+          <div className="text-center mb-8">
+            <h4 className="text-[#cbd5e1] uppercase tracking-[0.4em] text-[10px] font-bold mb-4">
               Atendimento Prioritário
             </h4>
-            <h3 className="font-serif text-2xl md:text-3xl text-white leading-tight opacity-100">
+            <h3 className="font-serif text-2xl md:text-4xl text-white leading-tight">
               Fale com um Especialista
             </h3>
-            <p className="text-white text-xs mt-4 opacity-80">
-              Atendimento digital especializado para todo o Brasil.
-            </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 mb-4">
-            {/* Telefone Mendoza */}
-            <a href="tel:+5583993754000" className="bg-white text-black hover:bg-gray-200 transition-all duration-300 py-3.5 rounded-xl flex items-center justify-center gap-2 font-bold text-[10px] uppercase tracking-wider shadow-lg">
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            <a href="tel:+5583993754000" className="bg-white/10 border border-white/20 text-white hover:bg-white hover:text-black transition-all duration-500 py-4 rounded-2xl flex items-center justify-center gap-2 font-bold text-[10px] uppercase tracking-widest backdrop-blur-md">
               <i className="ri-phone-fill text-lg"></i> Ligar
             </a>
-            {/* Instagram Mendoza */}
-            <a href="https://www.instagram.com/mendozaadvogados.saude/" target="_blank" rel="noopener noreferrer" className="bg-white text-black hover:bg-gray-200 transition-all duration-300 py-3.5 rounded-xl flex items-center justify-center gap-2 font-bold text-[10px] uppercase tracking-wider shadow-lg">
+            <a href="https://www.instagram.com/mendozaadvogados.saude/" target="_blank" rel="noopener noreferrer" className="bg-white/10 border border-white/20 text-white hover:bg-white hover:text-black transition-all duration-500 py-4 rounded-2xl flex items-center justify-center gap-2 font-bold text-[10px] uppercase tracking-widest backdrop-blur-md">
               <i className="ri-instagram-line text-lg"></i> Instagram
             </a>
           </div>
 
-          {/* ======================================================= */}
-          {/* BOTÃO WHATSAPP: AGORA AZUL SAFIRA ESCURO, CHIC E SERIFADO */}
-          {/* ======================================================= */}
+          {/* BOTÃO WHATSAPP PRATA RELUZENTE - TIPO NAVBAR COM TEXTO LEVE */}
           <a 
             href="https://wa.me/5583993754000" 
             target="_blank" 
             rel="noopener noreferrer"
-            // Mudança para 'font-serif' e peso 'font-medium' (elegante)
-            className="relative w-full py-4 rounded-xl font-serif font-medium text-[12px] md:text-[14px] uppercase tracking-[0.3em] flex items-center justify-center gap-3 overflow-hidden active:scale-95 transition-all duration-300 mt-2 shadow-2xl animate-piscarBotao group"
-            style={{ 
-              ...estiloBotaoMendozaDark, // Aplica o gradiente metálico escuro
-              color: '#E2C08A',          // Texto Dourado Champagne Pálido (Chic)
-            }}
+            className="relative w-full py-5 rounded-2xl font-normal text-[12px] md:text-[14px] uppercase tracking-[0.3em] flex items-center justify-center gap-3 overflow-hidden transition-all duration-300 shadow-2xl bg-prata-brilhoso text-[#050C16] animate-[pulse-prata-reluzente_2s_infinite]"
           >
-            {/* Efeito shimmer (brilho corrido) - Mantido e ultra-sutil */}
-            <div className="absolute inset-0 w-full h-full">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full animate-brilhoCorrido"></div>
+            {/* Camada do Reflexo Prata */}
+            <div className="shimmer-layer-contact">
+              <div className="shimmer-line-contact"></div>
             </div>
             
-            {/* Overlay de hover sutil para clarear metal */}
-            <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-300"></div>
-            
-            {/* Ícone e Texto Dourados com leve drop-shadow */}
-            <i className="ri-whatsapp-line text-xl relative z-10 text-[#E2C08A] drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]"></i> 
-            <span className="relative z-10 text-[#E2C08A] drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]">Iniciar Consulta Online</span>
+            <i className="ri-whatsapp-line text-2xl relative z-10"></i> 
+            <span className="relative z-10 font-normal">Iniciar Consulta Online</span>
           </a>
+          
+          <p className="text-white/60 text-[10px] text-center mt-6 uppercase tracking-widest">
+            Resposta imediata via WhatsApp
+          </p>
         </div>
       </div>
-
-      <style jsx="true">{`
-        @keyframes brilhoCorrido {
-          0% { transform: translateX(-100%); }
-          15% { transform: translateX(100%); } /* Brilho ultra-rápido e sutil */
-          100% { transform: translateX(100%); }
-        }
-        @keyframes piscarBotao {
-          0% { filter: brightness(1); }
-          50% { filter: brightness(1.08); } /* Piscar quase imperceptível */
-          100% { filter: brightness(1); }
-        }
-        .animate-brilhoCorrido {
-          animation: brilhoCorrido 5s infinite ease-in-out; /* Ciclo bem longo */
-        }
-        .animate-piscarBotao {
-          animation: piscarBotao 4s infinite ease-in-out; /* Ciclo bem longo */
-        }
-      `}</style>
     </section>
   );
 };
