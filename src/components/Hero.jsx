@@ -35,7 +35,7 @@ const Hero = () => {
             opacity: 0.15;
             filter: blur(1px);
             animation: floatHero 15s infinite ease-in-out;
-            pointer-events: none; /* Garante que não atrapalhe cliques */
+            pointer-events: none; 
         }
         @keyframes floatHero {
             0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.1; }
@@ -44,13 +44,13 @@ const Hero = () => {
         }
       `}</style>
 
-      {/* Camada 0: Imagem de fundo */}
-      <div className="absolute inset-0 bg-[url('/hero.png')] bg-cover bg-center md:bg-right-top z-0"></div>
+      {/* Camada 0: Imagem de fundo ajustada */}
+      {/* bg-[22%_center] empurra a imagem para a esquerda no mobile, focando nas pessoas */}
+      <div className="absolute inset-0 bg-[url('/hero.png')] bg-cover bg-[22%_center] md:bg-right-top z-0"></div>
       
-      {/* Camada 1: PONTINHOS FLUTUANTES (Agora garantidamente EM CIMA do fundo) */}
+      {/* Camada 1: PONTINHOS FLUTUANTES */}
       <div className="absolute inset-0 z-10 pointer-events-none">
         <div className="relative w-full h-full overflow-hidden">
-          {/* Gerando os pontos com posições e animações independentes */}
           <span className="dot-hero w-1 h-1 top-[20%] left-[15%]" style={{ animationDelay: '0s' }}></span>
           <span className="dot-hero w-2 h-2 top-[60%] left-[25%]" style={{ animationDelay: '2.5s' }}></span>
           <span className="dot-hero w-1 h-1 top-[40%] left-[80%]" style={{ animationDelay: '4s' }}></span>
@@ -62,12 +62,11 @@ const Hero = () => {
       </div>
       
       {/* Overlay suave para mobile */}
-      <div className="absolute inset-0 bg-black/30 md:bg-transparent z-10"></div>
+      <div className="absolute inset-0 bg-black/40 md:bg-transparent z-10"></div>
 
-      {/* Camada 2: Conteúdo (Texto e Botão) */}
+      {/* Camada 2: Conteúdo */}
       <div className="max-w-7xl mx-auto px-6 py-12 relative z-20 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         
-        {/* COLUNA ESQUERDA */}
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left gap-6 mt-8 lg:mt-20">
           
           <h1 className="text-4xl md:text-5xl lg:text-5xl font-serif text-white leading-[1.1] tracking-tight drop-shadow-2xl">
@@ -76,8 +75,8 @@ const Hero = () => {
             direito à saúde
           </h1>
           
-          <p className="text-sm md:text-lg text-gray-200 max-w-lg leading-relaxed font-light drop-shadow-lg">
-            Há mais de 10 anos, a Mendoza Advogados atua na proteção intransigente dos direitos e garantias de seus clientes. Atendimento técnico e personalizado em Campina Grande - PB.
+          <p className="text-sm md:text-lg text-gray-100 max-w-lg leading-relaxed font-light drop-shadow-lg">
+            Há mais de 10 anos, a Mendoza Advogados atua na proteção intransigente dos direitos e garantias de seus clientes.
           </p>
           
           <div className="w-full flex flex-col items-center lg:items-start gap-4 mt-4">
@@ -93,7 +92,6 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* COLUNA DIREITA (Espaçador) */}
         <div className="hidden lg:flex relative w-full h-[650px] items-end justify-center">
         </div>
       </div>
