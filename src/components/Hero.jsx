@@ -44,10 +44,9 @@ const Hero = () => {
         }
       `}</style>
 
-      {/* Camada 0: Imagem de fundo corrigida */}
-      {/* Alterado de bg-[10%_center] para bg-[75%_center] no mobile */}
-      {/* Isso puxa o lado direito da imagem (as pessoas) para o centro da tela do celular */}
-      <div className="absolute inset-0 bg-[url('/hero.png')] bg-cover bg-[75%_center] md:bg-right-top z-0"></div>
+      {/* Camada 0: Imagem de fundo ajustada para o limite direito */}
+      {/* Alterado para bg-[95%_center] para forçar o lado direito da imagem no centro do mobile */}
+      <div className="absolute inset-0 bg-[url('/hero.png')] bg-cover bg-[95%_center] md:bg-right-top z-0"></div>
       
       {/* Camada 1: PONTINHOS FLUTUANTES */}
       <div className="absolute inset-0 z-10 pointer-events-none">
@@ -62,8 +61,8 @@ const Hero = () => {
         </div>
       </div>
       
-      {/* Overlay suave para mobile */}
-      <div className="absolute inset-0 bg-black/45 md:bg-transparent z-10"></div>
+      {/* Overlay mobile reforçado para garantir leitura sobre as pessoas */}
+      <div className="absolute inset-0 bg-black/50 md:bg-transparent z-10"></div>
 
       {/* Camada 2: Conteúdo */}
       <div className="max-w-7xl mx-auto px-6 py-12 relative z-20 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
