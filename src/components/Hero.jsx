@@ -60,14 +60,14 @@ const Hero = () => {
         </div>
       </div>
       
-      {/* Overlay mobile reforçado */}
+      {/* Overlay mobile */}
       <div className="absolute inset-0 bg-black/50 md:bg-transparent z-10"></div>
 
       {/* Camada 2: Conteúdo */}
       <div className="max-w-7xl mx-auto px-6 py-12 relative z-20 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         
-        {/* COLUNA ESQUERDA: mt-24 no mobile e mt-40 no desktop para descer o conteúdo */}
-        <div className="flex flex-col items-center text-center lg:items-start lg:text-left gap-6 mt-24 lg:mt-40">
+        {/* BLOCO DE TEXTO: mt-32 empurra tudo para baixo no mobile, md:mt-48 no desktop */}
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-left gap-6 mt-32 md:mt-48">
           
           <h1 className="text-4xl md:text-5xl lg:text-5xl font-serif text-white leading-[1.1] tracking-tight drop-shadow-2xl">
             Transformando Vidas<br />
